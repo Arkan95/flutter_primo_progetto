@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
-const _PATH = "assets/images";
-const _PIC01 = "$_PATH/sunset.jpg";
-const _PIC02 = "$_PATH/dog1.jpg";
-const _PIC03 = "$_PATH/dog2.jpg";
-const _PIC04 = "$_PATH/fox.jpg";
-const _PIC05 = "$_PATH/spring.jpg";
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       //Altro...
       home: MyPage(),
     );
@@ -25,70 +18,140 @@ class MyApp extends StatelessWidget {
 
 class MyPage extends StatelessWidget {
   const MyPage({Key? key}) : super(key: key);
-
+  Widget _rowMainAlign(mainAxisAlignmentPassato) => Container(
+        color: Colors.orange[100],
+        child: Row(
+          mainAxisAlignment: mainAxisAlignmentPassato,
+          children: <Widget>[
+            Text(
+              "Testo1",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo2",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo3",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo4",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+          ],
+        ),
+        height: 30,
+        margin: EdgeInsets.all(5),
+      );
+  Widget _columnMainAlign(crossAxisAlignmentPassato) => Container(
+        color: Colors.green[100],
+        child: Column(
+          crossAxisAlignment: crossAxisAlignmentPassato,
+          children: <Widget>[
+            Text(
+              "Testo1",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo2",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo3",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+            Text(
+              "Testo4",
+              style: TextStyle(color: Colors.black, fontSize: 17),
+            ),
+          ],
+        ),
+        height: 100,
+        width: 200,
+        margin: EdgeInsets.all(5),
+      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Prova'),
+        title: const Text('Prova'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            //Immagine 1
-            Container(
-              constraints: BoxConstraints.expand(height: 300),
-              alignment: Alignment.center,
-              child: Image.asset(
-                "assets/images/dog2.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
-            //Immagine 2
-            Container(
-              constraints: BoxConstraints.expand(height: 300),
-              alignment: Alignment.center,
-              child: Image(
-                image: AssetImage(_PIC05),
-                fit: BoxFit.cover,
-              ),
-            ),
-            //Immagine 3
-            Container(
-              color: Colors.blueGrey,
-              child: Image.asset(
-                _PIC01,
-                height: 200,
-                width: 200,
-              ),
-            ),
-            //Immagine 4
-            Container(
-              color: Colors.blueGrey,
-              child: Image.asset(
-                _PIC01,
-                fit: BoxFit.fill,
-                height: 150,
-                width: 150,
-              ),
-            ),
-            //Immagine 5
-            Container(
-              color: Colors.blueGrey,
-              child: Image.asset(
-                _PIC01,
-                fit: BoxFit.fitWidth,
-                height: 150,
-                width: 150,
-              ),
+            Text(
+              "Allineamento con Row",
+              textAlign: TextAlign.justify,
             ),
             Container(
-              color: Colors.blueGrey,
-              child: Image.asset(
-                _PIC01,
-                fit: BoxFit.fitHeight,
-                height: 150,
-                width: 150,
+              child: Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.start"),
+                      _rowMainAlign(MainAxisAlignment.start),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.center"),
+                      _rowMainAlign(MainAxisAlignment.center),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.end"),
+                      _rowMainAlign(MainAxisAlignment.end),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.spaceBetween"),
+                      _rowMainAlign(MainAxisAlignment.spaceBetween),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.spaceEvenly"),
+                      _rowMainAlign(MainAxisAlignment.spaceEvenly),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Riga con MainAxisAlignment.spaceAround"),
+                      _rowMainAlign(MainAxisAlignment.spaceAround),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              "Allineamento con Column",
+              textAlign: TextAlign.justify,
+            ),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text("Colonna con CrossAxisAlignment.start"),
+                      _columnMainAlign(CrossAxisAlignment.start),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Colonna con CrossAxisAlignment.center"),
+                      _columnMainAlign(CrossAxisAlignment.center),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Colonna con CrossAxisAlignment.end"),
+                      _columnMainAlign(CrossAxisAlignment.end),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
